@@ -72,13 +72,13 @@ public class User {
 	public long getiD() {
 		return iD;
 	}
-	public void setiD(int iD) {
+	public void setiD(long iD) {
 		this.iD = iD;
 	}
 	public long getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(long phone) {
 		this.phone = phone;
 	}
 
