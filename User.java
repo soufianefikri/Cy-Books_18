@@ -1,16 +1,19 @@
 package cyBooks18;
 
+
 public class User {
-	String name;
-	String surname;
+	String firstname;
+	String lastname;
 	String adress;
 	String email;
 	long iD;
 	long phone;
 	
-	public User(String name,String surname,String adress,String email,long iD,long phone) {
-		this.name = name;
-		this.surname = surname;
+	
+	
+	public User(String firstname,String lastname,String adress,String email,long iD,long phone) {
+		this.firstname = firstname;
+		this.lastname = lastname;
 		this.adress = adress;
 		this.email = email;
 		this.iD = iD;
@@ -30,7 +33,7 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", surname=" + surname + ", adress=" + adress + ", email=" + email + ", iD=" + iD
+		return "User [name=" + firstname + ", surname=" + lastname + ", adress=" + adress + ", email=" + email + ", iD=" + iD
 				+ ", phone=" + phone + "]";
 	}
 
@@ -45,17 +48,17 @@ public class User {
 
 
 
-	public String getName() {
-		return name;
+	public String getFirstame() {
+		return firstname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
-	public String getSurname() {
-		return surname;
+	public String getLastname() {
+		return lastname;
 	}
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 	public String getAdress() {
 		return adress;
