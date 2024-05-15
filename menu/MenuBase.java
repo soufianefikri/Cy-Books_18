@@ -2,6 +2,7 @@ package menu;
 
 import javafx.animation.PathTransition;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -223,7 +224,11 @@ public class MenuBase extends AnchorPane {
      * Launched when customer button is pressed.
      */
     protected void customer(javafx.event.ActionEvent actionEvent){
-        System.out.println("customer");
+        UsersBase usersBase = new UsersBase();
+
+        Scene currentScene = btn_customer.getScene();
+
+        currentScene.setRoot(usersBase);
     }
 
     protected  void books(javafx.event.ActionEvent actionEvent){

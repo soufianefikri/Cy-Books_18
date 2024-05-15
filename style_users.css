@@ -1,0 +1,35 @@
+#bg_vBox {
+    -fx-border-color: #FFBA26;
+	-fx-background-color: #FFFF;
+    -fx-border-width: 10px;
+}
+
+.btn {
+    -fx-cursor: hand;
+	-fx-background-color:transparent ;
+	-fx-background-repeat: no-repeat;
+
+}
+#btn_home {
+    -fx-background-image: url('img/button_home.png');
+    
+}
+
+#btn_home:hover {
+    -fx-background-image: url('img/button_home_hover.png');
+}
+
+#btn_search {
+    -fx-background-image: url('img/search_tab.png');
+}
+
+#text_search {
+    -fx-background-color: transparent;
+    -fx-border-color: #FFBA26;
+}
+
+#hBox {
+    -fx-border-color: #FFBA26;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 3px;
+}
