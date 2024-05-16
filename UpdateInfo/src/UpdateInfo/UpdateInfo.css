@@ -1,0 +1,31 @@
+.root{
+	-fx-background-color:white;
+	-fx-border-color: #ffba26;
+	-fx-border-width:15px;
+	-fx-border-style:solid;
+	/*-fx-border-radius:25px;*/
+}
+
+
+#line{
+	-fx-stroke:#ffba26;
+	-fx-stroke-width:5;
+	-fx-stroke-line-cap:ROUND;
+}
+
+
+#hBox_name{
+	-fx-background-color: white;
+}
+
+#hBox_adress{
+	-fx-background-color: white;
+	
+}
+
+
+#hBox_contact{
+	-fx-background-color: white;
+	
+}
+
