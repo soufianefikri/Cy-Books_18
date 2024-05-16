@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -100,13 +101,12 @@ public class UpdateInfo {
 		
 		if(check_firstname && check_lastname && check_address && check_city && check_zipcode && check_email && check_number) {
 			String address1= address_field.getText()+" "+city_field.getText()+" "+zipcode_field.getText() ;
-			System.out.println(address1);
 			String firstname =firstname_field.getText();
 			String lastname = lastname_field.getText();
 			String address =address1;
 			String email = email_field.getText();
 			String phone = number_field.getText();
-			UpdateUser(firstname,lastname,address,email,phone);
+			updateUser(id,firstname,lastname,address,email,phone);
 			
 		}
 		else {
@@ -300,33 +300,46 @@ public class UpdateInfo {
 		
 	}
 	
-	public void UpdateUser(String firstname,String lastname,String address,String email,String phone) {
-		try {
-			//1.Load the driver
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			//2.Establish the connection
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_database","root","aqzsedrf963.");
-			//2.1Connection CHeck
-			if(connection!= null) {
-				System.out.println("Espresso");
-			}
-			Statement statement = connection.createStatement(); 
-			String sql="INSERT user_database.users (firstname,lastname,address,email,phone)"
-					+ "VALUES('" + firstname + "','" + lastname + "','" + address + "','" + email + "','" + phone +"');";
-			int rowsAffected = statement.executeUpdate(sql);
-		    if (rowsAffected > 0) {
-		    	System.out.println("User registered successfully.");
-		    } else {
-		    	System.out.println("Failed to register user.");
-		    }
-			statement.close();
-			connection.close();
-			
-		}catch(Exception e) {
-			System.out.println(e);
-		}
+	public void updateUser(int id, String firstname, String lastname, String address, String email, String phone) {
+	    try {
+	        // Load the driver
+	        Class.forName("com.mysql.cj.jdbc.Driver");
+	        // Establish the connection
+	        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_database", "root", "aqzsedrf963.");
+	        // Connection Check
+	        if (connection != null) {
+	            System.out.println("Espresso");
+	        }
+	        
+	        
+	        String sql = "UPDATE user_database.users SET firstname=?, lastname=?, address=?, email=?, phone=? WHERE id=?";
+	        PreparedStatement statement = connection.prepareStatement(sql);
+	        
+	        
+	        statement.setString(1, firstname);
+	        statement.setString(2, lastname);
+	        statement.setString(3, address);
+	        statement.setString(4, email);
+	        statement.setString(5, phone);
+	        statement.setInt(6, id);
+	        
+	        
+	        int rowsAffected = statement.executeUpdate();
+	        
+
+	        if (rowsAffected > 0) {
+	            System.out.println("User updated successfully.");
+	        } else {
+	            System.out.println("Failed to update user.");
+	        }
+	        
+	        statement.close();
+	        connection.close();
+	    } catch (Exception e) {
+	        System.out.println(e);
+	    }
 	}
-	public static void RetrieveData( int id) {
+	public  void RetrieveData( int id) {
 		try {
 			//1.Load the driver
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -362,7 +375,7 @@ public class UpdateInfo {
 			System.out.println(e);
 		}
 	}
-	public static void showData(String firstname, String lastname, String address, String email, String phone) {
+	public void showData(String firstname, String lastname, String address, String email, String phone) {
 		
 		
 
@@ -375,6 +388,16 @@ public class UpdateInfo {
 	            String streetAddress = matcher.group(1);
 	            String city = matcher.group(2);
 	            String zipcode = matcher.group(3);
+	            
+	            
+				firstname_field.setText(firstname);
+				lastname_field.setText(lastname);
+				address_field.setText(streetAddress);
+				city_field.setText(city);
+				zipcode_field.setText(zipcode);
+				email_field.setText(email);
+				number_field.setText(phone);
+				
 
 	            System.out.println("Street Address: " + streetAddress);
 	            System.out.println("City: " + city);
