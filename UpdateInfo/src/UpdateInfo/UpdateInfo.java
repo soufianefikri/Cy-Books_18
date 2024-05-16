@@ -43,46 +43,7 @@ public class UpdateInfo {
 	
 	
 	
-	/*public void RetrieveData( int id) {
-		try {
-			//1.Load the driver
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			//2.Establish the connection
-			Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/user_database","root","aqzsedrf963.");
-			//2.1Connection CHeck
-			if(connection!= null) {
-				System.out.println("Espresso");
-			}
-			Statement statement = connection.createStatement(); 
-			String sql = "SELECT * FROM users WHERE id = " + id;
-            ResultSet rs = statement.executeQuery(sql);
-
-            if (rs.next()) {
-                // Retrieve data from the result set
-               
-                String firstname = rs.getString("firstname");
-                String lastname = rs.getString("lastname");
-                String address = rs.getString("address");
-                String email = rs.getString("email");
-                String phone = rs.getString("phone");
-
-                // Print the retrieved data
-                System.out.println("ID: " + id);
-                System.out.println("First Name: " + firstname);
-                System.out.println("Last Name: " + lastname);
-                System.out.println("Address: " + address);
-                System.out.println("Email: " + email);
-                System.out.println("Phone: " + phone);
-            } else {
-                System.out.println("No user found with ID: " + id);
-            }
-          
-         
-			
-		}catch(Exception e) {
-			System.out.println(e);
-		}
-	}*/
+	
 	
 	
 
