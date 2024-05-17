@@ -1,0 +1,5 @@
+Ajout historique : 
+	- Modification class connexion avec un ajout de getLoanHistory()
+	- Ajout new class HistoricalBase et LoanHistory
+	- Modification class  UsersBase, remplacement du texte Historique Emprunt par un bouton
+
