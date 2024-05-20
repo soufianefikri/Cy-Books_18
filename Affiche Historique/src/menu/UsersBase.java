@@ -439,10 +439,13 @@ public class UsersBase extends AnchorPane {
     
     protected void watch_historical(javafx.event.ActionEvent actionEvent) {
     	
-    	HistoricalBase historicalView = new HistoricalBase(u); 
-    	
-        Scene currentScene = btn_historical.getScene();
-        
-        currentScene.setRoot(historicalView);
+    	Stage stage = new Stage();
+    	HistoricalBase historicalBase = new HistoricalBase(u); 
+        Scene scene = new Scene(historicalBase, 800, 600);
+        stage.setScene(scene);        
+        stage.setTitle("CY BOOKS : History");
+        stage.setResizable(false);
+        stage.show();
+	    
 	}
 }
