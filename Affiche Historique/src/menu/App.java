@@ -10,10 +10,11 @@ public class App extends Application {
     public void start(Stage primaryStage) {
 
         //MenuBase menu = new MenuBase();
-        RegisterBase menu = new RegisterBase();
-        
+        //RegisterBase menu = new RegisterBase();
+        LoginBase login = new LoginBase();
 
-        Scene scene = new Scene(menu, 800, 600);
+
+        Scene scene = new Scene(login, 800, 600);
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("CY BOOKS");

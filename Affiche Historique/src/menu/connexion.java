@@ -100,4 +100,32 @@ public class connexion {
     }
     
     
+    /**
+     * 
+     * @param username 
+     * @param password
+     * @return true if username and password correct, else false
+     */
+    public static boolean checkIdPassword(String username, String password){
+    	boolean isValid = false;
+    	try {
+    	    Class.forName("com.mysql.cj.jdbc.Driver");
+    	    Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
+    	    Statement stmt = conn.createStatement();
+    	    String query = "SELECT * FROM password WHERE username = '" + username + "' AND password = '" + password + "'";
+    	    ResultSet resultSet = stmt.executeQuery(query);
+    	    
+    	    if (resultSet.next()) {
+    	        isValid = true;
+    	    }
+    	    
+    	    conn.close();
+    	} catch (SQLException | ClassNotFoundException e) {
+    	    e.printStackTrace();
+    	}
+    	return isValid;
+
+
+    }
+    
 }
