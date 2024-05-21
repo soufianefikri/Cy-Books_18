@@ -50,19 +50,13 @@ public class SearchedBooks_Controller {
         idh.getChildren().add(il);
    
         
-        System.out.println(info.get(0).getDate());
-        System.out.println(info.get(0).getIdentifier());
-        System.out.println(info.get(0).getLanguage());
-        System.out.println(info.get(0).getAuthor());
-        System.out.println(info.get(0).getTitle());
+   
         
         
     }
 	
 	
-	public void test2() {
-		test();
-	}
+	
 	
 	
 	
