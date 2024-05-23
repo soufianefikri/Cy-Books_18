@@ -3,6 +3,7 @@ package menu;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 
 public class MenuBaseController extends MenuBase{
     /**
@@ -54,7 +55,11 @@ public class MenuBaseController extends MenuBase{
      * Launched when borrow button is pressed.
      */
     protected  void borrow(javafx.event.ActionEvent actionEvent){
-        System.out.println("emprunts");
+        VBox vbox2 = connexion.mostLoaned();
+
+        Scene currScene = btn_borrow.getScene();
+
+        currScene.setRoot(vbox2);
     }
     /**
      * Launched when parameters button is pressed.

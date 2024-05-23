@@ -124,7 +124,9 @@ public class FXMLController {
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../SearchedBooks.fxml"));
 				try {
 					Parent parent = fxmlLoader.load();
+					scene.getStylesheets().add(getClass().getResource("../application/SearchedBooks.css").toExternalForm());
 					scene.setRoot(parent);
+
 					application.SearchedBooks_Controller controller = fxmlLoader.getController();
 					controller.display(book);
 				}
