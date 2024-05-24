@@ -17,6 +17,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.AnchorPane;
 import menu.MenuBase;
 import menu.MenuBaseController;
 import testapi.ApiCaller;
@@ -25,6 +26,9 @@ import testapi.Query;
 
 public class FXMLController {
 	private Query.DateRelation dateRelation;
+	
+	@FXML
+	private AnchorPane bg;
 	
 	@FXML
 	private RadioButton generalButton;

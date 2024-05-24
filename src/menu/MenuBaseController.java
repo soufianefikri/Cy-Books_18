@@ -28,6 +28,7 @@ public class MenuBaseController extends MenuBase{
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../searchBook/Main.fxml"));
 				try {
 					Parent parent = fxmlLoader.load();
+					scene.getStylesheets().add(getClass().getResource("../searchBook/searchpage.css").toExternalForm());
 					scene.setRoot(parent);
 					//searchBook.FXMLController controller = fxmlLoader.getController();
 				}
