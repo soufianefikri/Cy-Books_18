@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLController">
+   <children>
+      <TextField fx:id="keywords" layoutX="108.0" layoutY="18.0" prefHeight="26.0" prefWidth="449.0" />
+      <Label layoutX="39.0" layoutY="22.0" text="Mots-clés :" />
+      <HBox alignment="CENTER_LEFT" layoutX="39.0" layoutY="44.0" prefHeight="26.0" prefWidth="518.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="63.0">
+               <children>
+                  <Label text="Recherche :" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="72.0">
+               <children>
+                  <RadioButton fx:id="generalButton" mnemonicParsing="false" selected="true" text="générale">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="searchType" />
+                     </toggleGroup>
+                  </RadioButton>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="70.0">
+               <children>
+                  <RadioButton fx:id="titleButton" mnemonicParsing="false" text="par titre" toggleGroup="$searchType" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="83.0">
+               <children>
+                  <RadioButton fx:id="authorButton" mnemonicParsing="false" text="par auteur" toggleGroup="$searchType" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="72.0">
+               <children>
+                  <RadioButton fx:id="subjectButton" mnemonicParsing="false" text="par sujet" toggleGroup="$searchType" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="83.0">
+               <children>
+                  <RadioButton fx:id="languageButton" mnemonicParsing="false" text="par langue" toggleGroup="$searchType" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="64.0">
+               <children>
+                  <RadioButton fx:id="ISBNButton" mnemonicParsing="false" text="ISBN" toggleGroup="$searchType" />
+               </children>
+            </HBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="41.0" layoutY="70.0" prefHeight="26.0" prefWidth="518.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="67.0" prefWidth="149.0">
+               <children>
+                  <CheckBox fx:id="searchByYear" mnemonicParsing="false" text="Recherche par année :" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="58.0">
+               <children>
+                  <RadioButton fx:id="beforeButton" mnemonicParsing="false" onAction="#changeRelation" text="avant">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="searchDateRelation" />
+                     </toggleGroup>
+                  </RadioButton>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="72.0">
+               <children>
+                  <RadioButton fx:id="duringButton" mnemonicParsing="false" onAction="#changeRelation" text="pendant" toggleGroup="$searchDateRelation" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="58.0">
+               <children>
+                  <RadioButton fx:id="afterButton" mnemonicParsing="false" onAction="#changeRelation" text="après" toggleGroup="$searchDateRelation" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="181.0">
+               <children>
+                  <TextField fx:id="date" alignment="CENTER" prefHeight="26.0" prefWidth="184.0" promptText="Date (format YYYY)" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <Button fx:id="searchButton" layoutX="438.0" layoutY="107.0" mnemonicParsing="false" onAction="#search" text="Lancer la recherche" />
+      <ListView fx:id="listBooks" layoutX="39.0" layoutY="144.0" prefHeight="235.0" prefWidth="518.0" />
+      <Label fx:id="label" layoutX="39.0" layoutY="110.0" prefHeight="18.0" prefWidth="97.0" text="J'existe svp" />
+      <Button fx:id="cancelButton" layoutX="711.0" layoutY="534.0" mnemonicParsing="false" onAction="#cancel" text="Back" />
+   </children>
+</AnchorPane>
