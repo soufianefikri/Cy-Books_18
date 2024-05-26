@@ -210,7 +210,7 @@ public abstract class RegisterBase extends AnchorPane {
         button.setLayoutY(500.0);
         button.setPrefHeight(80);
         button.setPrefWidth(85);
-        button.setOnAction(this::check_input);
+        button.setOnAction(this::checkInput);
         button.getStyleClass().add("btn");
         button.setId("check_btn");
 
@@ -268,7 +268,7 @@ public abstract class RegisterBase extends AnchorPane {
      * Check if all the inputs are OK and add a new row in the table users
      * @param actionEvent
      */
-    protected abstract void check_input(javafx.event.ActionEvent actionEvent);
+    protected abstract void checkInput(javafx.event.ActionEvent actionEvent);
     /** 
      * Return to the home menu
      * @param actionEvent
