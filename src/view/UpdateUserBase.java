@@ -210,7 +210,7 @@ public abstract class UpdateUserBase extends AnchorPane {
         button.setLayoutY(500.0);
         button.setPrefHeight(80);
         button.setPrefWidth(85);
-        button.setOnAction(this::check_input);
+        button.setOnAction(this::checkInput);
         button.getStyleClass().add("btn");
         button.setId("update_btn");
 
@@ -265,7 +265,7 @@ public abstract class UpdateUserBase extends AnchorPane {
 
     }
 
-    protected abstract void check_input(javafx.event.ActionEvent actionEvent);
+    protected abstract void checkInput(javafx.event.ActionEvent actionEvent);
 
     protected abstract void cancel(javafx.event.ActionEvent actionEvent);
 
