@@ -96,7 +96,6 @@
       </HBox>
       <Button fx:id="searchButton" layoutX="438.0" layoutY="107.0" mnemonicParsing="false" onAction="#search" text="Lancer la recherche" />
       <ListView fx:id="listBooks" layoutX="39.0" layoutY="144.0" prefHeight="235.0" prefWidth="518.0" />
-      <Label fx:id="label" layoutX="39.0" layoutY="110.0" prefHeight="18.0" prefWidth="97.0" text="J'existe svp" />
       <Button fx:id="cancelButton" layoutX="711.0" layoutY="534.0" mnemonicParsing="false" onAction="#cancel" text="Back" />
    </children>
 </AnchorPane>
