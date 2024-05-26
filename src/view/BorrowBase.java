@@ -1,6 +1,9 @@
 package view;
 
+import java.time.LocalDate;
+
 import javafx.scene.control.Button;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -133,6 +136,13 @@ public abstract class BorrowBase extends AnchorPane{
         datePicker.setLayoutX(430);
         datePicker.setLayoutY(430);
         datePicker.setPrefWidth(249.0);
+        datePicker.setDayCellFactory(param -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                setDisable(empty || date.compareTo(LocalDate.now()) < 0 );
+            }
+        });
 
         borrowButton.setLayoutX(600);
         borrowButton.setLayoutY(534);
