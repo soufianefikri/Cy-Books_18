@@ -263,6 +263,12 @@ public class connexion {
         return loanHistoryList;
     }
 
+    
+    /** 
+     * @param user_id
+     * @param book_id
+     * @param DateToReturn
+     */
     public static void registerNewLoan(int user_id, int book_id, String DateToReturn){
         try {
 			//1.Load the driver
@@ -418,4 +424,26 @@ public class connexion {
 		vbox.setPrefSize(600, 450);
 		return vbox;
 	}
+
+    public static int numberOfLoan(String isbn){
+        try {
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			stmt = conn.createStatement();
+            // SQL query
+            String sql = "SELECT COUNT(*) AS number FROM loans WHERE isbn = ?  AND Real_return_date IS NULL";
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, isbn);
+    
+            // Execute the SELECT query
+            ResultSet rs = statement.executeQuery();
+    
+            if (rs.next()) {
+                int number = rs.getInt("number");
+                return number;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
