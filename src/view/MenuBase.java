@@ -27,9 +27,7 @@ public abstract class MenuBase extends AnchorPane {
     protected final Button btn_close_menu;
     protected final Button btn_calendar;
     protected final Button btn_borrow;
-    protected final Button btn_param;
     protected final VBox vBox0;
-    protected final Button btn_leave;
     boolean visble;
     public MenuBase() {
 
@@ -44,9 +42,7 @@ public abstract class MenuBase extends AnchorPane {
         btn_close_menu = new Button();
         btn_calendar = new Button();
         btn_borrow = new Button();
-        btn_param = new Button();
         vBox0 = new VBox();
-        btn_leave = new Button();
         visble = false;
 
         setMaxHeight(USE_PREF_SIZE);
@@ -153,25 +149,11 @@ public abstract class MenuBase extends AnchorPane {
         btn_borrow.setPrefWidth(300.0);
         btn_borrow.getStylesheets().add("styles/style_menu.css");
 
-        btn_param.setId("btn_param");
-        btn_param.getStyleClass().add("btn");
-        btn_param.setMnemonicParsing(false);
-        btn_param.setOnAction(this::param);
-        btn_param.setPrefHeight(60.0);
-        btn_param.setPrefWidth(300.0);
-        btn_param.getStylesheets().add("styles/style_menu.css");
 
         vBox0.setAlignment(javafx.geometry.Pos.BOTTOM_RIGHT);
         vBox0.setPrefHeight(316.0);
         vBox0.setPrefWidth(260.0);
 
-        btn_leave.setId("btn_leave");
-        btn_leave.getStyleClass().add("btn");
-        btn_leave.setMnemonicParsing(false);
-        btn_leave.setOnAction(this::leave);
-        btn_leave.setPrefHeight(60.0);
-        btn_leave.setPrefWidth(300.0);
-        btn_leave.getStylesheets().add("styles/style_menu.css");
         box_menu.setPadding(new Insets(10.0, 0.0, 0.0, 0.0));
 
         vBox.getChildren().add(btn_menu);
@@ -184,8 +166,6 @@ public abstract class MenuBase extends AnchorPane {
         box_menu.getChildren().add(btn_close_menu);
         box_menu.getChildren().add(btn_calendar);
         box_menu.getChildren().add(btn_borrow);
-        box_menu.getChildren().add(btn_param);
-        vBox0.getChildren().add(btn_leave);
         box_menu.getChildren().add(vBox0);
         getChildren().add(box_menu);
 
@@ -224,10 +204,6 @@ public abstract class MenuBase extends AnchorPane {
     protected abstract void calendar(javafx.event.ActionEvent actionEvent);
 
     protected abstract void borrow(javafx.event.ActionEvent actionEvent);
-
-    protected abstract void param(javafx.event.ActionEvent actionEvent);
-
-    protected abstract void leave(javafx.event.ActionEvent actionEvent);
 
 }
 

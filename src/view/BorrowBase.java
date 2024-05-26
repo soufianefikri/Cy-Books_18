@@ -88,7 +88,8 @@ public abstract class BorrowBase extends AnchorPane{
         list_view.setPrefWidth(249.0);
 
         searchButton.setLayoutX(690.0);
-        searchButton.setLayoutY(100.0);
+        searchButton.setLayoutY(87.0);
+        searchButton.setPrefHeight(50.0);
         searchButton.setOnAction(event -> search());
 
 
@@ -131,9 +132,10 @@ public abstract class BorrowBase extends AnchorPane{
 
         datePicker.setLayoutX(430);
         datePicker.setLayoutY(430);
+        datePicker.setPrefWidth(249.0);
 
-        borrowButton.setLayoutX(500);
-        borrowButton.setLayoutY(500);
+        borrowButton.setLayoutX(600);
+        borrowButton.setLayoutY(534);
         borrowButton.setOnAction(event -> borrow());
 
         cancelButton.setLayoutX(711);
