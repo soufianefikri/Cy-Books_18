@@ -14,6 +14,7 @@ import controller.UpdateUserBaseController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
@@ -29,6 +30,10 @@ public class connexion {
     static final String DB_URL = "jdbc:mysql://localhost:3306/cy_books";
     static final String USER = "root";
     static final String PASS = "0805";
+    
+    private static Connection conn;
+    private static Statement stmt;
+    private static PreparedStatement statement;
     /**
     * Get All informations about an user and display it
     * @param surname_name
@@ -37,8 +42,8 @@ public class connexion {
     public String[] getUtilisateursFromDatabase(String words) {
         String[] names = new String[10];
         try{
-            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            Statement stmt = conn.createStatement();
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
             int i = 0;
             
             ResultSet resultSet = stmt.executeQuery("select * from users where concat(name,' ',surname) like '"+words+"%' or concat(surname,' ',name) like '"+words+"%'");
@@ -63,8 +68,8 @@ public class connexion {
     public static User getUser(String surname_name){
         User u = new User();
         try{
-            Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            Statement stmt = conn.createStatement();
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
             ResultSet resultSet = stmt.executeQuery("select * from users where concat(surname,' ',name) like '" + surname_name + "'");
                 while (resultSet.next()){
                     String name = resultSet.getString("name");
@@ -95,15 +100,13 @@ public class connexion {
 			//1.Load the driver
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			//2.Establish the connection
-			Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			//2.1Connection CHeck
-			if(connection!= null) {
-				System.out.println("Espresso");
-			}
-			Statement statement = connection.createStatement(); 
+
+			stmt = conn.createStatement(); 
 			String sql="INSERT cy_books.users (name,surname,address,email,phone)"
 					+ "VALUES('" + firstname + "','" + lastname + "','" + address + "','" + email + "','" + phone +"');";
-			int rowsAffected = statement.executeUpdate(sql);
+			int rowsAffected = stmt.executeUpdate(sql);
 		    if (rowsAffected > 0) {
 		    	Alert alert = new Alert(Alert.AlertType.INFORMATION);
 	            	alert.setTitle("Nouveau utilisateur créé");
@@ -117,8 +120,8 @@ public class connexion {
 	            	alert.setHeaderText("Erreur");
 	            	alert.showAndWait();
 		    }
-			statement.close();
-			connection.close();
+			stmt.close();
+			conn.close();
 			
 		}catch(Exception e) {
 			System.out.println(e);
@@ -136,16 +139,16 @@ public class connexion {
             Class.forName("com.mysql.cj.jdbc.Driver");
     
             // Establish a connection
-            Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
     
             // Check connection
-            if (connection != null) {
+            if (conn != null) {
                 System.out.println("Connected to the database!");
             }
     
             // SQL query
             String sql = "SELECT * FROM users WHERE id = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            statement = conn.prepareStatement(sql);
             statement.setInt(1, id);
     
             // Execute the SELECT query
@@ -167,7 +170,7 @@ public class connexion {
             // Close the statement and the declaration
             rs.close();
             statement.close();
-            connection.close();
+            conn.close();
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
@@ -187,15 +190,11 @@ public class connexion {
 	        // Load the driver
 	        Class.forName("com.mysql.cj.jdbc.Driver");
 	        // Establish the connection
-	        Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
+	        conn = DriverManager.getConnection(DB_URL, USER, PASS);
 	        // Connection Check
-	        if (connection != null) {
-	            System.out.println("Espresso");
-	        }
-	        
 	        
 	        String sql = "UPDATE cy_books.users SET name=?, surname=?, address=?, email=?, phone=? WHERE id=?";
-	        PreparedStatement statement = connection.prepareStatement(sql);
+	        statement = conn.prepareStatement(sql);
 	        
 	        
 	        statement.setString(1, firstname);
@@ -224,7 +223,7 @@ public class connexion {
 	        }
 	        
 	        statement.close();
-	        connection.close();
+	        conn.close();
 	    } catch (Exception e) {
 	        System.out.println(e);
 	    }
@@ -242,8 +241,8 @@ public class connexion {
         ObservableList<LoanHistory> loanHistoryList = FXCollections.observableArrayList();
 
         try  {
-        	Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            Statement stmt = conn.createStatement();
+        	conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
             ResultSet resultSet = stmt.executeQuery("SELECT loans.title, loans.Loan_date, loans.Planned_return_date, loans.Real_return_date, loans.id"
             		+ " FROM loans "
                     + " INNER JOIN users ON loans.id_user = users.id "
@@ -269,22 +268,20 @@ public class connexion {
 			//1.Load the driver
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			//2.Establish the connection
-			Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			//2.1Connection CHeck
-			if(connection!= null) {
-				System.out.println("Espresso");
-			}
-			Statement statement = connection.createStatement(); 
+
+			stmt = conn.createStatement(); 
 			String sql="INSERT cy_books.loans (id,id_user,Loan_date,Planned_return_date,Real_return_date)"
 					+ "VALUES('" + book_id + "','" + user_id + "','" + LocalDate.now() + "','" + DateToReturn + "','null');";
-			int rowsAffected = statement.executeUpdate(sql);
+			int rowsAffected = stmt.executeUpdate(sql);
 		    if (rowsAffected > 0) {
 		    	System.out.println("User registered successfully.");
 		    } else {
 		    	System.out.println("Failed to register user.");
 		    }
-			statement.close();
-			connection.close();
+			stmt.close();
+			conn.close();
 			
 		}catch(Exception e) {
 			System.out.println(e);
@@ -296,23 +293,20 @@ public class connexion {
 			//1.Load the driver
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			//2.Establish the connection
-			Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			//2.1Connection CHeck
-			if(connection!= null) {
-				System.out.println("Espresso");
-			}
 
-			Statement statement = connection.createStatement(); 
+			stmt = conn.createStatement(); 
 			String sql="INSERT cy_books.loans (title,isbn,id_user,copy_number,Loan_date,Planned_return_date,Real_return_date)"
 					+ "VALUES('" + name + "','" + ISBN + "','" + id_user +"','" + nb + "', NOW() ,'" + Planned_return +"',NULL);";
-			int rowsAffected = statement.executeUpdate(sql);
+			int rowsAffected = stmt.executeUpdate(sql);
 		    if (rowsAffected > 0) {
 		    	System.out.println("Loan registered successfully.");
 		    } else {
 		    	System.out.println("Failed to register loan.");
 		    }
-			statement.close();
-			connection.close();
+			stmt.close();
+			conn.close();
 			
 		}catch(Exception e) {
 			System.out.println(e);
@@ -324,16 +318,14 @@ public class connexion {
 	        // Load the driver
 	        Class.forName("com.mysql.cj.jdbc.Driver");
 	        // Establish the connection
-	        Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
+	        conn = DriverManager.getConnection(DB_URL, USER, PASS);
 	        // Connection Check
-	        if (connection != null) {
-	            System.out.println("Espresso");
-	        }
+
 	        
 
 	        
 	        String sql2 = "UPDATE cy_books.loans SET Real_return_date=NOW() WHERE id=?";
-	        PreparedStatement statement = connection.prepareStatement(sql2);
+	        statement = conn.prepareStatement(sql2);
 	        statement.setString(1, id);
 	        
 	        
@@ -347,7 +339,7 @@ public class connexion {
 	        }
 	        
 	        statement.close();
-	        connection.close();
+	        conn.close();
 	    } catch (Exception e) {
 	        System.out.println(e);
 	    }
@@ -358,8 +350,8 @@ public class connexion {
         ObservableList<LateHistory> lateHistoryList = FXCollections.observableArrayList();
 
         try  {
-        	Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            Statement stmt = conn.createStatement();
+        	conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
             String sql = "SELECT loans.title,users.name,users.surname, loans.Planned_return_date FROM loans INNER JOIN users on users.id = loans.id_user WHERE Planned_return_date<NOW();";
             ResultSet resultSet = stmt.executeQuery(sql);
             while (resultSet.next()) {
@@ -382,11 +374,13 @@ public class connexion {
 
 		// Connect to the database and execute the SQL query
 		ObservableList<ObservableList<String>> data = FXCollections.observableArrayList();
-		try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
-				Statement statement = connection.createStatement();
+		try {
+				conn = DriverManager.getConnection(DB_URL, USER, PASS);
+				stmt = conn.createStatement();
 				// only select books that have been loaned 30 days prior today
-				ResultSet resultSet = statement.executeQuery(
-						"SELECT ISBN, COUNT(*) AS Number_of_loan FROM loans WHERE Loan_date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY ISBN ORDER BY Number_of_loan DESC")) {
+				ResultSet resultSet = stmt.executeQuery(
+						"SELECT ISBN, COUNT(*) AS Number_of_loan FROM loans WHERE Loan_date >= DATE_SUB(CURDATE(), INTERVAL 30 DAY) GROUP BY ISBN ORDER BY Number_of_loan DESC");
+						
 			// add the top of the array
 			List<String> header = new ArrayList<String>();
 			header.add("Title");
