@@ -71,19 +71,7 @@ public class MenuBaseController extends MenuBase{
         VBox vbox2 = connexion.mostLoaned();
 
         Scene currScene = btn_borrow.getScene();
-	currScene.getStylesheets().add(getClass().getResource("../styles/searchpage.css").toExternalForm());
+	    currScene.getStylesheets().add(getClass().getResource("../styles/searchpage.css").toExternalForm());
         currScene.setRoot(vbox2);
-    }
-    /**
-     * null
-     */
-    protected  void param(javafx.event.ActionEvent actionEvent){
-        System.out.println("parametres");
-    }
-    /**
-     * null
-     */
-    protected  void leave(javafx.event.ActionEvent actionEvent){
-        System.out.println("leave");
     }
 }
