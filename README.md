@@ -25,6 +25,7 @@ CY-Book est une application graphique en Java conçue pour aider les bibliothéc
     Installation
             1.	Cloner le dépôt GitHub :
                 git clone https://github.com/soufianefikri/Cy-Books_18/tree/main/src
+                Le dossier de l'application est le dossier nommé src
                 
                 cd cy-book
             2.	Configurer la base de données MySQL :
