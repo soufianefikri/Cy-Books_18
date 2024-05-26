@@ -10,6 +10,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import view.BorrowBase;
 import view.connexion;
 
@@ -59,7 +60,17 @@ public class BorrowController extends BorrowBase{
     }
 
     public void borrow(){
-        view.connexion.registerLoan(isbn, title, id_user, nb,datePicker.getValue());
+        int n = view.connexion.numberOfLoan(isbn);
+        System.out.println(n);
+        if (n < 3){
+            view.connexion.registerLoan(isbn, title, id_user, nb,datePicker.getValue());
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+		    alert.setTitle("Number of book loans too high");
+		    alert.setContentText("The book has already been loaned 3 times, it is no longer available, please change books");
+		    alert.setHeaderText("The book is no longer available");
+		    alert.showAndWait();
+        }
     }
 
     public void cancel(){
