@@ -105,9 +105,17 @@ public class connexion {
 					+ "VALUES('" + firstname + "','" + lastname + "','" + address + "','" + email + "','" + phone +"');";
 			int rowsAffected = statement.executeUpdate(sql);
 		    if (rowsAffected > 0) {
-		    	System.out.println("User registered successfully.");
+		    	Alert alert = new Alert(Alert.AlertType.INFORMATION);
+	            	alert.setTitle("Nouveau utilisateur créé");
+	            	alert.setContentText("Le nouveau utilisateur est bien enregistré dans la base de données");
+	           	alert.setHeaderText("Confirmation");
+	            	alert.showAndWait();
 		    } else {
-		    	System.out.println("Failed to register user.");
+		    	Alert alert = new Alert(Alert.AlertType.ERROR);
+	            	alert.setTitle("Nouveau utilisateur non créé");
+	           	alert.setContentText("Le nouveau utilisateur n'est pas enregistré dans la base de données");
+	            	alert.setHeaderText("Erreur");
+	            	alert.showAndWait();
 		    }
 			statement.close();
 			connection.close();
@@ -202,9 +210,17 @@ public class connexion {
 	        
 
 	        if (rowsAffected > 0) {
-	            System.out.println("User updated successfully.");
-	        } else {
-	            System.out.println("Failed to update user.");
+		    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+	            alert.setTitle("Modification effectuée");
+	            alert.setContentText("Les informations de l'utilisateur ont bien été modifiées");
+	            alert.setHeaderText("Confirmation");
+	            alert.showAndWait();
+		} else {
+	            Alert alert = new Alert(Alert.AlertType.ERROR);
+	            alert.setTitle("Modification non effectuée");
+	            alert.setContentText("Les informations de l'utilisateur n'ont pas été modifiées");
+	            alert.setHeaderText("Erreur");
+	            alert.showAndWait();
 	        }
 	        
 	        statement.close();
