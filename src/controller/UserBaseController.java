@@ -99,7 +99,7 @@ public class UserBaseController extends UsersBase{
         Scene currentScene = btn_change.getScene();
         currentScene.setRoot(menu);
 
-        connexion.RetrieveData(u.getiD(),menu);
+        connexion.retrieveData(u.getiD(),menu);
     
         
     };
