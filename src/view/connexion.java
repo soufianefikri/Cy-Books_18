@@ -175,12 +175,12 @@ public class connexion {
 
     /**
   * Update/Change User Information in the Database
-  * @param id
-  * @param firstname
-  * @param lastname
-  * @param address
-  * @param email
-  * @param phone
+  * @param id of the user we want to update the informations
+  * @param firstname possibly changed
+  * @param lastname possibly changed
+  * @param address possibly changed
+  * @param email possibly changed
+  * @param phone possibly changed
   */
     public static void changeUserInfo(int id, String firstname, String lastname, String address, String email, String phone) {
 	    try {
