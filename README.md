@@ -40,7 +40,9 @@ CY-Book est une application graphique en Java conçue pour aider les bibliothéc
 
 
 Utilisation
+            
             •	Inscription des usagers : Accéder au module d'inscription des usagers et ajouter de nouveaux utilisateurs.
+            
             •	Gestion des emprunts : Suivre les emprunts et les retours de livres via le module de gestion des emprunts.
 
 
