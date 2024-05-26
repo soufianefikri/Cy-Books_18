@@ -74,8 +74,8 @@ public class RegisterUserInfo {
 		String nameRegex ="^[A-Z][a-zA-Z -]+";
 		Pattern pattern = Pattern.compile(nameRegex);
 		Matcher matcher = pattern.matcher(name);
-		// checks if name has more that one letter, an less that 45 to respect settings of the data base
-		if ( name.length() <= 45 && matcher.find() && name.length() >=2) {
+		// checks if name has more that one letter, an less that 255 to respect settings of the data base
+		if ( name.length() <= 255 && matcher.find() && name.length() >=2) {
 			return true;
 		}
 		else {
@@ -95,8 +95,8 @@ public class RegisterUserInfo {
 		String emailRegex ="^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\\.(com|fr)$";
 		Pattern pattern = Pattern.compile(emailRegex);
 		Matcher matcher = pattern.matcher(email);
-		// an email needs to have at least 8 characters to be valid and less that 45 to fit in the data base
-		if ( email.length() <= 45 && matcher.find() && email.length() >= 8) {
+		// an email needs to have at least 8 characters to be valid and less that 255 to fit in the data base
+		if ( email.length() <= 255 && matcher.find() && email.length() >= 8) {
 			return true;
 		}
 		else {
@@ -114,7 +114,7 @@ public class RegisterUserInfo {
 		String addressRegex = "^[0-9]+(\\s|,)+([a-zA-Z]|\\s)";
 		Pattern pattern = Pattern.compile(addressRegex);
 		Matcher matcher = pattern.matcher(address);
-		if ( address.length() <= 60 && matcher.find() && address.length() >= 5) {
+		if ( address.length() <= 200 && matcher.find() && address.length() >= 5) {
 			return true;
 		}
 		else {
