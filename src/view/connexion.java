@@ -83,14 +83,13 @@ public class connexion {
         return u;
     }
     /**
-    * Register A new User in the Database
-    * @param id
-    * @param firstname
-    * @param lastname
-    * @param address
-    * @param email
-    * @param phone
-    */
+     * Register a new User in the Database
+     * @param firstname of the new user
+     * @param lastname of the new user
+     * @param address of the new user
+     * @param email of the new user
+     * @param phone of the new user
+     */
     public static void registerUser(String firstname,String lastname,String address,String email,String phone) {
 		try {
 			//1.Load the driver
@@ -119,29 +118,29 @@ public class connexion {
 	}
 
     /**
-  * Get All Informations of an user and display them in the TextField
-  * @param id
-  * @param menu
-  */
-    public static void RetrieveData(int id,UpdateUserBaseController menu) {
+     * Get All Information of an existing user and display them in their respective TextFields
+     * @param id of the user 
+     * @param menu instance of UpdateUserBaseController
+     */
+    public static void retrieveData(int id,UpdateUserBaseController menu) {
         try {
-            // Chargement du driver
+            // Load the driver
             Class.forName("com.mysql.cj.jdbc.Driver");
     
-            // Établissement de la connexion
+            // Establish a connection
             Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
     
-            // Vérification de la connexion
+            // Check connection
             if (connection != null) {
                 System.out.println("Connected to the database!");
             }
     
-            // Création de l'instruction SQL
+            // SQL query
             String sql = "SELECT * FROM users WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
     
-            // Exécution de la requête SELECT
+            // Execute the SELECT query
             ResultSet rs = statement.executeQuery();
     
             if (rs.next()) {
@@ -151,13 +150,13 @@ public class connexion {
                 String email = rs.getString("email");
                 String phone = rs.getString("phone");
 
-                // Affichage des données dans l'instance existante de UpdateUserBase
+                // Show data in the existing UpdateUserBase instance
                 menu.showData(firstname, lastname, address, email, phone);
             } else {
                 System.out.println("No user found with ID: " + id);
             }
     
-            // Fermeture de la connexion et de la déclaration
+            // Close the statement and the declaration
             rs.close();
             statement.close();
             connection.close();
@@ -175,7 +174,7 @@ public class connexion {
   * @param email
   * @param phone
   */
-    public static void updateUser(int id, String firstname, String lastname, String address, String email, String phone) {
+    public static void changeUserInfo(int id, String firstname, String lastname, String address, String email, String phone) {
 	    try {
 	        // Load the driver
 	        Class.forName("com.mysql.cj.jdbc.Driver");
